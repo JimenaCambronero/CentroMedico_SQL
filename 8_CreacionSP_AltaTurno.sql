@@ -3,13 +3,13 @@
 CREATE PROC ALTA_Turno
     (
     @fecha char(14),
-    -- 20190215 12:00
     @idPaciente INT,
     @idMedico INT,
     @observacion varchar (300) = ''
 )
 as 
 GO
+
 /*
 Estado = 0 pendiente
 Estado = 1 realizado
@@ -17,13 +17,12 @@ Estado = 2 cancelado
 */
 
 
-EXEC ALTA_Turno '20200215 08:15', 1004, 2, 'Paciente que debe tomar la medicación'
+EXEC ALTA_Turno '20340215 17:15', 11, 1003, 'Paciente No toma medicación'
 go
 
 ALTER PROC ALTA_Turno
     (
     @fecha char(14),
-    -- 20190215 12:00
     @idPaciente INT,
     @idMedico INT,
     @observacion varchar (300) = ''
@@ -58,5 +57,7 @@ BEGIN
 END
 GO 
 
---SELECT * from Turno
---SELECT * from TurnoPacienteMedico
+SELECT * from Turno
+SELECT * from TurnoPacienteMedico
+SELECT * from Paciente
+SELECT * from Medico
