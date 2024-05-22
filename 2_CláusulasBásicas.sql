@@ -6,11 +6,18 @@ SELECT * FROM Paciente;
 SELECT nombre, apellido
 FROM Paciente; 
 
+SELECT top 1 * 
+From Paciente
+
 SELECT TOP 2 * 
 FROM Paciente;
 
 SELECT TOP 2 nombre, apellido 
 FROM Paciente;
+
+SELECT top 3 * FROM Paciente
+
+SELECT top 3 nombre, apellido, telefono FROM Paciente
 
 --ORDER BY
 SELECT * FROM Paciente
@@ -22,15 +29,28 @@ ORDER BY fNacimiento DESC;
 SELECT * FROM Pago
 ORDER BY fecha;
 
+SELECT * FROM Paciente
+ORDER BY fNacimiento
+
+SELECT * FROM Paciente
+ORDER BY fNacimiento desc
+
+-- ORDER BY Y TOP
+SELECT top 1 * FROM Paciente 
+ORDER BY fNacimiento DESC
+
+
 --Error de Tipeo se corrige
 UPDATE Pago SET observación = 'Pago Pendiente' WHERE idPago = 2;
 
 -- Combinando TOP y ORDER BY (obtener el paciente con la fecha de nacimiento más reciente y otra que devuelva al paciente más joven)
 
-SELECT TOP 1 * FROM Paciente
+SELECT TOP 1 * 
+FROM Paciente
 ORDER BY fNacimiento DESC;
 
-SELECT TOP 1 * FROM Paciente
+SELECT TOP 1 * 
+FROM Paciente
 ORDER By fNacimiento;
 
 -- Cláusula DISTINCT (agrupamos por paises)
@@ -41,9 +61,17 @@ FROM Paciente;
 SELECT DISTINCT fNacimiento
 FROM Paciente; 
 
+SELECT distinct(idPais) 
+FROM Paciente
+
+SELECT distinct(fNacimiento) 
+FROM Paciente
+
+
 -- Cláusula GROUP BY (permite funciones de agregación)
 
-SELECT idPais FROM Paciente
+SELECT idPais 
+FROM Paciente
 GROUP BY idPais;
 
 -- Cláusula WHERE
@@ -56,6 +84,16 @@ WHERE apellido = 'Perez';
 
 SELECT * FROM Paciente
 WHERE idPaciente = 10;
+
+SELECT * FROM Paciente
+WHERE idPais = 'MEX'
+
+SELECT * FROM Paciente
+WHERE apellido = 'Ramirez'
+
+SELECT * FROM Paciente
+WHERE fNacimiento = '20020312'
+
 
 -- MAX Y MIN
 
