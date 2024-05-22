@@ -49,14 +49,20 @@ DROP TABLE tablaejemplo
 --Funciones 
 -- LEFT (toma los x primeros caracteres, en este caso 2 de la IZQUIERDA) 
 -- RIGHT (toma los x primeros caracteres, en este caso 2 de la DERECHA)
-DECLARE @var1 VARCHAR(20)
-DECLARE @var2 VARCHAR(20)
+DECLARE @var1 VARCHAR(20);
+DECLARE @var2 VARCHAR(20);
 
-SET @var1 = 'Juana'
-SET @var2 = 'Perez'
+SET @var1 = 'Juana';
+SET @var2 = 'Perez';
+
 print LEFT (@var1,2)
 print RIGHT (@var1,2)
 PRINT LEFT (@var1,5) + LEFT (@var2,1)
+
+--LEN
+DECLARE @var1 VARCHAR(20);
+SET @var1 = 'Juana';
+PRINT LEN(@var1)
 
 -- Ejemplo
 -- Obtener un listado de las iniciales de los pacientes, leyendo los campos nombre y apellido, utilizando la función LEFT y el operador + para concatenar las iniciales y obtener el resultado.
@@ -64,20 +70,88 @@ SELECT Nombre, Apellido,
 LEFT (Nombre, 1) + LEFT (Apellido,1)
 FROM Paciente;
 
--- Insertar 2 valores en Tabla Concepto
-INSERT INTO Concepto values ('Laboratorio')
-INSERT INTO Concepto values ('Radiología')
-
--- Insertar 3 valores en tabla Pago
-INSERT into Pago values (2, '20240522',1200,'0', 'Pago realizado' )
-INSERT INTO Pago values( 2, '20290215', 4500, 0, 'Pago Pendiente')
-INSERT INTO Pago values( 13, '20190520', 6800, 0, 'Pago Pendiente')
-
--- Insertar 3 registros enn tabla pago paciente
-INSERT INTO PagoPaciente values (1005, 1002, 3)
-INSERT INTO PagoPaciente values (2, 10, 2)
-INSERT INTO PagoPaciente values (1007, 12, 2010)
+-- Obtener un listado de la cantidad de caracteres que tiene el campo domicilio en la tabla paciente
+SELECT domicilio,
+LEN(domicilio)
+FROM Paciente
 
 
-select * from Concepto
-select * from Pago
+DECLARE @var1 VARCHAR(20);
+DECLARE @var2 VARCHAR(20);
+
+SET @var1 = 'Juana';
+SET @var2 = 'Perez';
+
+PRINT LOWER(@var1)
+PRINT UPPER(@var1)
+
+--REPLACE
+DECLARE @var3 VARCHAR(20)
+
+SET @var3 = 'Juan"a  '
+SELECT REPLACE(@var3, '"','')
+
+--REPLICATE
+PRINT REPLICATE(0,5)
+
+--LTRIM y RTRIM eliminar espacios
+DECLARE @var5 VARCHAR(20)
+DECLARE @var6 VARCHAR(20)
+
+SET @var5 = '   Juana'
+SET @var6 = 'Perez   '
+
+SELECT LTRIM(@var5) + ' ' + @var6 + '*'
+SELECT LTRIM(@var5) + ' ' + RTRIM(@var6) + '*'
+
+--CONCAT
+DECLARE @var1 VARCHAR(20);
+DECLARE @var2 VARCHAR(20);
+
+SET @var1 = 'Juana';
+SET @var2 = 'Perez';
+
+SELECT concat(@var1,' ' ,@var2)
+
+--GETDATE y GETUTCDATE
+SELECT GETDATE()
+SELECT GETUTCDATE()
+
+--DATEADD, permite agregar intervalos en fechas(dias, meses, años)
+--ejemplo, sumamos dos dias a la fecha de hoy
+SELECT DATEADD(day,2,GETDATE())
+
+--ejemplo, sumamos dos hs a la fecha de hoy
+SELECT DATEADD(HOUR,2,GETDATE())
+
+--DATEDIFF , diferencia de años
+SELECT DATEDIFF(year, GETDATE(), '20170120')
+--ejemplo diferencia de meses
+SELECT DATEDIFF(month, GETDATE(), '20170120')
+
+--DATEPART, intervalo especifico de fecha
+SELECT DATEPART(dw,GETDATE())
+
+SELECT DATEPART(YEAR,GETDATE())
+
+--CAST y CONVERT, la segunda es mas amplia
+DECLARE @numero money
+SET @numero= 500.40
+print(@numero)
+
+SELECT CAST(@numero as INT) AS Numero
+
+SELECT CAST(idPaciente as money) FROM Paciente;
+GO
+
+--convert
+DECLARE @numero2 money
+SET @numero2 = 500.40
+
+SELECT CONVERT(int, @numero2)
+
+DECLARE @fecha DATETIME
+SET @fecha = GETDATE()
+
+SELECT CONVERT(char(8), @fecha) as fecha_cortada_por_parametro -- 104 111 
+SELECT CONVERT(char(8), @fecha, 114)
