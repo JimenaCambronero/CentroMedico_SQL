@@ -64,4 +64,20 @@ SELECT Nombre, Apellido,
 LEFT (Nombre, 1) + LEFT (Apellido,1)
 FROM Paciente;
 
+-- Insertar 2 valores en Tabla Concepto
+INSERT INTO Concepto values ('Laboratorio')
+INSERT INTO Concepto values ('Radiología')
 
+-- Insertar 3 valores en tabla Pago
+INSERT into Pago values (2, '20240522',1200,'0', 'Pago realizado' )
+INSERT INTO Pago values( 2, '20290215', 4500, 0, 'Pago Pendiente')
+INSERT INTO Pago values( 13, '20190520', 6800, 0, 'Pago Pendiente')
+
+-- Insertar 3 registros enn tabla pago paciente
+INSERT INTO PagoPaciente values (1005, 1002, 3)
+INSERT INTO PagoPaciente values (2, 10, 2)
+INSERT INTO PagoPaciente values (1007, 12, 2010)
+
+
+select * from Concepto
+select * from Pago
